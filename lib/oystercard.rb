@@ -19,22 +19,15 @@ class Oystercard
     @balance += added
   end
 
+  def in_journey?
+    !!@entry_station
+  end
+
   def touch_in(entry_station)
     fail "Insufficient funds for journey" if @balance < MIN_BALANCE
     @entry_station = entry_station
     @journey[:entry_station] = @entry_station
   end
-
-  def in_journey?
-    !!entry_station #if nil the first ! turns it into true,
-    # the second back into false see below if statement
-    # if entry_station == nil
-    #   false
-    # else
-    #   true
-    # end
-  end
-
 
   def touch_out(exit_station)
     deduct(MIN_FARE)
@@ -42,14 +35,6 @@ class Oystercard
     @journey[:exit_station] = @exit_station
     @journeys << @journey
     @entry_station = nil
-  end
-
-  def entry_station
-    @entry_station
-  end
-
-  def exit_station
-    @exit_station
   end
 
   private
