@@ -36,8 +36,8 @@ describe Oystercard do
   #   end
 
     it 'deducts money from balance' do
-      topped_up_card.touch_in
-      expect { topped_up_card.touch_out }.to change{ topped_up_card.balance}.by(-Oystercard::MIN_FARE)
+      topped_up_card.touch_in(entry_station)
+      expect { topped_up_card.touch_out(exit_station) }.to change{ topped_up_card.balance}.by(-Oystercard::MIN_FARE)
     end
 
     # it 'wipes entry station variable' do
@@ -65,7 +65,7 @@ end
 
   context 'No credit on card' do
     it 'will not touch in if below minimum balance' do
-      expect{ subject.touch_in }.to raise_error "Insufficient funds for journey"
+      expect{ subject.touch_in(entry_station) }.to raise_error "Insufficient funds for journey"
     end
   end
 
