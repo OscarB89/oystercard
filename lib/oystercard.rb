@@ -11,9 +11,9 @@ class Oystercard
   def initialize(balance = DEFAULT_BALANCE)
     @balance = balance
     @journeys = []
-    # @entry_station = nil
+    # @entry_station = entry_station
     # @exit_station = nil
-    @journey = {}
+    @journey = nil
     # { entry_station: @entry_station, exit_station: @exit_station }
   end
 
@@ -23,7 +23,8 @@ class Oystercard
   end
 
   def in_journey?
-    !!@entry_station #true
+    !!@journey #true
+    # @entry_station == nil ? false : true
   end
 
   def touch_in(entry_station)

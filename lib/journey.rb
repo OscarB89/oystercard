@@ -11,7 +11,7 @@ class Journey
   end
 
   def fare
-      (@entry_station = "Penalty" || @exit_station = "Penalty") ? PENALTY_FARE : MINIMUM_FARE
+    (@entry_station == "Penalty" || @exit_station == "Penalty") ? PENALTY_FARE : MINIMUM_FARE
   end
 
 end

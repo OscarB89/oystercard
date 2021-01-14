@@ -15,16 +15,16 @@ let(:journey) { Journey.new("Nunhead") }
 
    describe '#fare method' do
 
-   let(:journey_1) { Journey.new("Nunhead") }
+  #  let(:journey_1) { Journey.new("Nunhead") }
 
      it "should charge minimum fare" do
-      journey_1.exit_station = 'Peckham Rye'
-      expect(journey_1.fare).to eq Journey::MINIMUM_FARE
+      journey.exit_station = "Peckham Rye"
+      expect(journey.fare).to eq Journey::MINIMUM_FARE
      end
 
-     it "should charge a penalty fare" do
-      journey_1.exit_station = 'Peckham Rye'
-      expect(journey_1.fare).to eq Journey::PENALTY_FARE
+     it "should charge a penalty fare if not touching out" do
+      journey.exit_station = "Penalty"
+      expect(journey.fare).to eq Journey::PENALTY_FARE
      end
    end
 
